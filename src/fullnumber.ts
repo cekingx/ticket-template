@@ -9,8 +9,10 @@ export function fullNumber(number: number): string {
   }
 
   exponentDigit = getExponent(number.toExponential());
+  const difference = floatingCount - exponentDigit;
+  const fixCount = (difference > 0) ? difference : 0;
 
-  return number.toFixed(0);
+  return number.toFixed(fixCount);
 }
 
 function getFloatCount(exponentNumber: string): number {
