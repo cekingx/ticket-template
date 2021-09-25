@@ -10,9 +10,10 @@ const generateQR = async (text: any) => {
         <html>
           <head>
             <style>
+              @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
               body {
-                width: 900px;
-                height: 320px;
+                width: 890px;
+                height: 314px;
               }
 
               .ticket {
@@ -102,38 +103,6 @@ const generateQR = async (text: any) => {
                 flex-direction: column;
                 position: relative;
               }
-              .ticket--end:before {
-                content: '';
-                width: 32px;
-                height: 32px;
-                background-color: #fff;
-                border: 1px solid #e0e0e0;
-                border-top-color: transparent;
-                border-right-color: transparent;
-                border-bottom-color: transparent;
-                position: absolute;
-                transform: rotate(-45deg);
-                right: -18px;
-                top: -2px;
-                margin-top: -16px;
-                border-radius: 50%;
-              }
-              .ticket--end:after {
-                content: '';
-                width: 32px;
-                height: 32px;
-                background-color: #fff;
-                border: 1px solid #e0e0e0;
-                border-right-color: transparent;
-                border-left-color: transparent;
-                border-bottom-color: transparent;
-                position: absolute;
-                transform: rotate(-45deg);
-                right: -18px;
-                top: 100%;
-                margin-top: -16px;
-                border-radius: 50%;
-              }
               .ticket--end > div:first-child {
                 flex: 1;
               }
@@ -179,42 +148,38 @@ const generateQR = async (text: any) => {
           </head>
           <body>
             <div class="ticket">
-              <div class="ticket--start">
-                <img src="https://i.ibb.co/W3cK42J/image-1.png"/>
-              </div>
               <div class="ticket--center">
                 <div class="ticket--center--row">
                   <div class="ticket--center--col">
                     <span>Your ticket for</span>
-                    <strong>The event name</strong>
+                    <strong>GrAnat "Recaka Patala"</strong>
                   </div>
                 </div>
                 <div class="ticket--center--row">
                   <div class="ticket--center--col">
                     <span class="ticket--info--title">Date and time</span>
-                    <span class="ticket--info--subtitle">Thursday, May 14 2020</span>
-                    <span class="ticket--info--content">7:00 am to 9:00 pm (GMT+1)</span>
+                    <span class="ticket--info--subtitle">Saturday, September 21 2019</span>
                   </div>
                   <div class="ticket--center--col">
                     <span class="ticket--info--title">Location</span>
-                    <span class="ticket--info--subtitle">Location name</span>
-                    <span class="ticket--info--content">Location complete address, Town, COUNTRY</span>
+                    <span class="ticket--info--subtitle">Lapangan Segara Perancak</span>
+                    <span class="ticket--info--content">Selatan Kantor Desa Tibubeneng, Badung</span>
                   </div>
                 </div>
                 <div class="ticket--center--row">
                   <div class="ticket--center--col">
                     <span class="ticket--info--title">Ticket type</span>
-                    <span class="ticket--info--content">Event category</span>
+                    <span class="ticket--info--content">Presale 1</span>
                   </div>
                   <div class="ticket--center--col">
                     <span class="ticket--info--title">Order info</span>
-                    <span  class="ticket--info--content">Order #0123456789. Ordered By Jhon DOE</span>
+                    <span  class="ticket--info--content">Order #0123456789. Ordered By cekingx</span>
                   </div>
                 </div>
               </div>
               <div class="ticket--end">
                 <div><img src="{{imageSource}}" /></div>
-                <div><img src="https://qidoon.com/assets/img/logo.svg"/></div>
+                <div><img src="https://www.granatsmft.com/js/images/index.png"/></div>
               </div>
             </div>
           </body>
