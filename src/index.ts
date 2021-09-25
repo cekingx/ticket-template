@@ -10,214 +10,212 @@ const generateQR = async (text: any) => {
         <html>
           <head>
             <style>
-              @import url('https://fonts.googleapis.com/css?family=Oswald');
-              *
-              {
-                margin: 0;
-                padding: 0;
-                border: 0;
-                box-sizing: border-box
+              body {
+                width: 900px;
+                height: 320px;
               }
 
-              body
-              {
-                background-color: #dadde6;
-                font-family: arial
-              }
-
-              .fl-left{float: left}
-
-              .fl-right{float: right}
-
-              .container
-              {
-                width: 90%;
-                margin: 100px auto
-              }
-
-              h1
-              {
-                text-transform: uppercase;
-                font-weight: 900;
-                border-left: 10px solid #fec500;
-                padding-left: 10px;
-                margin-bottom: 30px
-              }
-
-              .row{overflow: hidden}
-
-              .card
-              {
-                display: table-row;
-                width: 49%;
-                background-color: #fff;
-                color: #989898;
-                margin-bottom: 10px;
-                font-family: 'Oswald', sans-serif;
-                text-transform: uppercase;
-                border-radius: 4px;
-                position: relative
-              }
-
-              .card + .card{margin-left: 2%}
-
-              .date
-              {
-                display: table-cell;
-                width: 25%;
+              .ticket {
+                display: flex;
+                font-family: Roboto;
+                margin: 16px;
+                border: 1px solid #e0e0e0;
                 position: relative;
-                text-align: center;
-                border-right: 2px dashed #dadde6
               }
-
-              .date:before,
-              .date:after
-              {
-                content: "";
-                display: block;
-                width: 30px;
-                height: 30px;
-                background-color: #DADDE6;
+              .ticket--start {
+                position: relative;
+                border-right: 1px dashed #e0e0e0;
+              }
+              .ticket--start:before {
+                content: '';
+                width: 32px;
+                height: 32px;
+                background-color: #fff;
+                border: 1px solid #e0e0e0;
+                border-top-color: transparent;
+                border-left-color: transparent;
+                border-right-color: transparent;
                 position: absolute;
-                top: -15px ;
-                right: -15px;
-                z-index: 1;
-                border-radius: 50%
+                transform: rotate(-45deg);
+                left: -18px;
+                top: -2px;
+                margin-top: -16px;
+                border-radius: 50%;
               }
-
-              .date:after
-              {
-                top: auto;
-                bottom: -15px
-              }
-
-              .date time
-              {
-                display: block;
+              .ticket--start:after {
+                content: '';
+                width: 32px;
+                height: 32px;
+                background-color: #fff;
+                border: 1px solid #e0e0e0;
+                border-top-color: transparent;
+                border-left-color: transparent;
+                border-bottom-color: transparent;
                 position: absolute;
-                top: 50%;
-                left: 50%;
-                -webkit-transform: translate(-50%, -50%);
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%)
+                transform: rotate(-45deg);
+                left: -18px;
+                top: 100%;
+                margin-top: -16px;
+                border-radius: 50%;
               }
-
-              .date time span{display: block}
-
-              .date time span:first-child
-              {
-                color: #2b2b2b;
-                font-weight: 600;
-                font-size: 250%
+              .ticket--start > img {
+                display: block;
+                padding: 24px;
+                height: 270px;
               }
-
-              .date time span:last-child
-              {
+              .ticket--center {
+                padding: 24px;
+                flex: 1;
+              }
+              .ticket--center--row {
+                display: flex;
+              }
+              .ticket--center--row:not(:last-child) {
+                padding-bottom: 48px;
+              }
+              .ticket--center--row:first-child span {
+                color: #4872b0;
                 text-transform: uppercase;
-                font-weight: 600;
-                margin-top: -10px
+                line-height: 24px;
+                font-size: 13px;
+                font-weight: 500;
               }
-
-              .card-cont
-              {
-                display: table-cell;
-                width: 75%;
-                font-size: 85%;
-                padding: 10px 10px 30px 50px
+              .ticket--center--row:first-child strong {
+                font-size: 20px;
+                font-weight: 400;
+                text-transform: uppercase;
               }
-
-              .card-cont h3
-              {
-                color: #3C3C3C;
-                font-size: 130%
+              .ticket--center--col {
+                display: flex;
+                flex: 1;
+                width: 50%;
+                box-sizing: border-box;
+                flex-direction: column;
               }
-
-              .row:last-child .card:last-of-type .card-cont h3
-              {
-                text-decoration: line-through
+              .ticket--center--col:not(:last-child) {
+                padding-right: 16px;
               }
-
-              .card-cont > div
-              {
-                display: table-row
+              .ticket--end {
+                padding: 24px;
+                background-color: #4872b0;
+                display: flex;
+                flex-direction: column;
+                position: relative;
               }
-
-              .card-cont .even-date i,
-              .card-cont .even-info i,
-              .card-cont .even-date time,
-              .card-cont .even-info p
-              {
-                display: table-cell
-              }
-
-              .card-cont .even-date i,
-              .card-cont .even-info i
-              {
-                padding: 5% 5% 0 0
-              }
-
-              .card-cont .even-info p
-              {
-                padding: 30px 50px 0 0
-              }
-
-              .card-cont .even-date time span
-              {
-                display: block
-              }
-
-              .card-cont img
-              {
-                display: block;
-                text-decoration: none;
-                background-color: #D8DDE0;
-                color: #fff;
-                text-align: center;
-                line-height: 30px;
-                border-radius: 2px;
+              .ticket--end:before {
+                content: '';
+                width: 32px;
+                height: 32px;
+                background-color: #fff;
+                border: 1px solid #e0e0e0;
+                border-top-color: transparent;
+                border-right-color: transparent;
+                border-bottom-color: transparent;
                 position: absolute;
-                right: 10px;
-                bottom: 10px
+                transform: rotate(-45deg);
+                right: -18px;
+                top: -2px;
+                margin-top: -16px;
+                border-radius: 50%;
               }
-
-              .row:last-child .card:first-child .card-cont a
-              {
-                background-color: #037FDD
+              .ticket--end:after {
+                content: '';
+                width: 32px;
+                height: 32px;
+                background-color: #fff;
+                border: 1px solid #e0e0e0;
+                border-right-color: transparent;
+                border-left-color: transparent;
+                border-bottom-color: transparent;
+                position: absolute;
+                transform: rotate(-45deg);
+                right: -18px;
+                top: 100%;
+                margin-top: -16px;
+                border-radius: 50%;
               }
-
-              .row:last-child .card:last-child .card-cont a
-              {
-                background-color: #F8504C
+              .ticket--end > div:first-child {
+                flex: 1;
+              }
+              .ticket--end > div:first-child > img {
+                width: 128px;
+                padding: 4px;
+                background-color: #fff;
+              }
+              .ticket--end > div:last-child > img {
+                display: block;
+                margin: 0 auto;
+                filter: brightness(0) invert(1);
+                opacity: 0.64;
+              }
+              .ticket--info--title {
+                text-transform: uppercase;
+                color: #757575;
+                font-size: 13px;
+                line-height: 24px;
+                font-weight: 600;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+              .ticket--info--subtitle {
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: 500;
+                color: #4872b0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+              .ticket--info--content {
+                font-size: 13px;
+                line-height: 24px;
+                font-weight: 500;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
             </style>
           </head>
           <body>
-            <div class="row">
-              <article class="card">
-                <section class="date">
-                  <time datetime="23th feb">
-                    <span>23</span><span>feb</span>
-                  </time>
-                </section>
-                <section class="card-cont">
-                  <small>dj khaled</small>
-                  <h3>live in sydney</h3>
-                  <div class="even-date">
-                  <i class="fa fa-calendar"></i>
-                  <time>
-                    <span>wednesday 28 december 2014</span>
-                    <span>08:55pm to 12:00 am</span>
-                  </time>
+            <div class="ticket">
+              <div class="ticket--start">
+                <img src="https://i.ibb.co/W3cK42J/image-1.png"/>
+              </div>
+              <div class="ticket--center">
+                <div class="ticket--center--row">
+                  <div class="ticket--center--col">
+                    <span>Your ticket for</span>
+                    <strong>The event name</strong>
                   </div>
-                  <div class="even-info">
-                    <i class="fa fa-map-marker"></i>
-                    <p>
-                      nexen square for people australia, sydney
-                    </p>
+                </div>
+                <div class="ticket--center--row">
+                  <div class="ticket--center--col">
+                    <span class="ticket--info--title">Date and time</span>
+                    <span class="ticket--info--subtitle">Thursday, May 14 2020</span>
+                    <span class="ticket--info--content">7:00 am to 9:00 pm (GMT+1)</span>
                   </div>
-                  <img src="{{imageSource}}" />
-                </section>
-              </article>
+                  <div class="ticket--center--col">
+                    <span class="ticket--info--title">Location</span>
+                    <span class="ticket--info--subtitle">Location name</span>
+                    <span class="ticket--info--content">Location complete address, Town, COUNTRY</span>
+                  </div>
+                </div>
+                <div class="ticket--center--row">
+                  <div class="ticket--center--col">
+                    <span class="ticket--info--title">Ticket type</span>
+                    <span class="ticket--info--content">Event category</span>
+                  </div>
+                  <div class="ticket--center--col">
+                    <span class="ticket--info--title">Order info</span>
+                    <span  class="ticket--info--content">Order #0123456789. Ordered By Jhon DOE</span>
+                  </div>
+                </div>
+              </div>
+              <div class="ticket--end">
+                <div><img src="{{imageSource}}" /></div>
+                <div><img src="https://qidoon.com/assets/img/logo.svg"/></div>
+              </div>
             </div>
           </body>
         </html>`,
@@ -229,4 +227,4 @@ const generateQR = async (text: any) => {
   }
 }
 
-generateQR('test');
+generateQR('4dd198cc-e013-4e86-bd35-d0c73398623a');
